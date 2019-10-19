@@ -1,26 +1,21 @@
 process.env.UV_THREADPOOL_SIZE = 4;
 let blockChain = require('./util/blockchain');
-const perf = require('execution-time')();
 var mongoose = require('mongoose');
 var config = require('./config/dev.js');
-let bc = new blockChain();
+var express = require('express');
+var helmet  = require('helmet');
+
 
 
 // Connect to database
-mongoose.connect(config.mongoURI);
+mongoose.connect(config.mongoURI,{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopology:true});
 
 // CONNECTION EVENTS
 // When successfully connected
 mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + config.mongoURI);
-  async function func(){
-    perf.start();
-    await bc.getTransactionDataOfLatestBlocks(10);
-    const results = perf.stop();
-    console.log(results.preciseWords);
-    }
-
-    func();
+  //let bc = new blockChain();
+  //bc.getTransactionDataOfLatestBlocks(600);
 });
 
 // If the connection throws an error
@@ -43,6 +38,22 @@ var gracefulExit = function() {
 // If the Node process ends, close the Mongoose connection
 process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
 
+// Setup server
+var app = express();
 
+// use helmet to protect app from some well known web vulnerabilities
+app.use(helmet());
 
+var server = require('http').createServer(app);
 
+// Start server
+server.listen(config.port, config.ip, function () {
+  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+  //console.log(mongoose.connection.readyState);
+});
+
+require('./config/setup')(app);
+require('./routes/index')(app);
+
+// Expose app
+exports = module.exports = app;
