@@ -1,11 +1,11 @@
 'use strict';
 
-var express = require('express');
-var controller = require('../controllers/user');
+const express = require('express');
+const UserController = require('../controllers/user');
 
 
 var router = express.Router();
 
-router.post('/getTransactions/', controller.getTransactions);
+router.post('/getTransactions/', UserController.getTransactions);
 
 module.exports = router;

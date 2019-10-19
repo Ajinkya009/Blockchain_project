@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "author": "Ajinkya Deshmukh",
   "license": "ISC",
@@ -27,10 +33,13 @@
     "morgan": "^1.9.1",
     "nodemon": "^1.19.4",
     "redis": "^2.8.0",
+    "redis-lru": "^0.6.0",
     "web3": "^1.2.1"
   },
   "devDependencies": {
     "gulp-jshint": "^2.1.0",
-    "jshint": "^2.10.2"
+    "jest": "^24.9.0",
+    "jshint": "^2.10.2",
+    "supertest": "^4.0.2"
   }
 }

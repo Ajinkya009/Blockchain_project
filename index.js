@@ -1,9 +1,9 @@
 process.env.UV_THREADPOOL_SIZE = 4;
 let blockChain = require('./util/blockchain');
-var mongoose = require('mongoose');
-var config = require('./config/dev.js');
-var express = require('express');
-var helmet  = require('helmet');
+const mongoose = require('mongoose');
+const config = require('./config/dev.js');
+const express = require('express');
+const helmet  = require('helmet');
 
 
 
@@ -28,7 +28,7 @@ mongoose.connection.on('disconnected', function () {
   console.log('Mongoose default connection disconnected');
 });
 
-var gracefulExit = function() {
+const gracefulExit = function() {
   mongoose.connection.close(function () {
     console.log('Mongoose default connection with DB :' + config.mongoURI + ' is disconnected through app termination');
     process.exit(0);
@@ -39,12 +39,12 @@ var gracefulExit = function() {
 process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
 
 // Setup server
-var app = express();
+const app = express();
 
 // use helmet to protect app from some well known web vulnerabilities
 app.use(helmet());
 
-var server = require('http').createServer(app);
+const server = require('http').createServer(app);
 
 // Start server
 server.listen(config.port, config.ip, function () {
