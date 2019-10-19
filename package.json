@@ -1,0 +1,22 @@
+{
+  "name": "maticassignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ajinkya Deshmukh",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.1.0",
+    "cli-progress": "^3.3.1",
+    "execution-time": "^1.3.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.5",
+    "redis": "^2.8.0",
+    "web3": "^1.2.1"
+  }
+}
