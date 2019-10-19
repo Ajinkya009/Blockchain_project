@@ -43,36 +43,7 @@ class BlockChain{
                                         hash:transaction.hash,
                                         blockNumber:transaction.blockNumber
                                     };
-                                    Transaction.create(trans).then(resp=>{
-                                        let users = [];
-                                        if(resp.to==resp.from){
-                                            users.push(resp.to);
-                                        }
-                                        else if(resp.to==null){
-                                            users.push(resp.from);
-                                        }
-                                        else if(resp.from==null){
-                                            users.push(resp.to);
-                                        }
-                                        else{
-                                            users = [resp.to,resp.from];
-                                        }
-                                        console.log(resp);
-                                        console.log(users);
-                                        users.forEach(user=>{
-                                            console.log(user);
-                                            User.update(
-                                                {hash:user},
-                                                {$set:{hash:user},$push:{transactions:resp._id}},
-                                                {upsert:true}
-                                            ).then(data=>{
-                                                console.log(data);
-                                            }).catch(err=>{
-                                                console.log(err);
-                                            });
-                                        });
-                                    });
-
+                                    Transaction.create(trans);
                                     resolve();
                                 })
                             }
