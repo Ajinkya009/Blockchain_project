@@ -4,7 +4,7 @@ const app = require('../index.js');
 require('../models/Transaction');
 
 const mongoose = require('mongoose');
-const keys = require('../config/dev');
+const keys = require('../config/keys');
 
 
 beforeAll(async () => {
