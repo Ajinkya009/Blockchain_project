@@ -1,6 +1,5 @@
 'use strict'
 
-const ObjectID = require('mongodb').ObjectID;
 const Transaction = require('../models/Transaction');
 const userCache = require('../util/cache/user');
 

@@ -1,6 +1,3 @@
-//process.env.UV_THREADPOOL_SIZE = 4;
-let blockChain = require('../util/blockchain');
-const mongoose = require('mongoose');
 const config = require('../config/dev.js');
 const express = require('express');
 const helmet  = require('helmet');
