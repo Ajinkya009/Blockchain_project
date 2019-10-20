@@ -1,8 +1,6 @@
 [![Build Status](https://travis-ci.org/Ajinkya009/Project_matic.svg?branch=master)](https://travis-ci.org/Ajinkya009/Project_matic)
 
-# Project Title
-
-Matic Network Project
+# Matic Network Project
 
 ## Getting Started
 
