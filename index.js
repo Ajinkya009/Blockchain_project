@@ -45,9 +45,8 @@ const app = express();
 // use helmet to protect app from some well known web vulnerabilities
 app.use(helmet());
 
-const server = require('http').createServer(app);
-
 if(process.env.NODE_ENV!='ci'){
+  const server = require('http').createServer(app);
   // Start server
   server.listen(config.port, config.ip, function () {
     console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));

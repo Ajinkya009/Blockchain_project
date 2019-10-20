@@ -1,21 +1,23 @@
 const request = require('supertest');
 const app = require('../index.js');
-
 require('../models/Transaction');
 
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
+let server;
 
-
-beforeAll(async () => {
+beforeAll(async (done) => {
+    server = require('http').createServer(app);
+    server.listen(done);
     mongoose.Promise = global.Promise;
     await mongoose.connect(keys.mongoURI, {
       useNewUrlParser: true,
     });
 });
 
-afterAll(async () => {
+afterAll(async (done) => {
     await mongoose.connection.close();
+    await server.close(done);
 });
 
 

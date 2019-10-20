@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "NODE_ENV=ci jest"
+    "test": "NODE_ENV=ci jest --forceExit"
   },
   "jest": {
     "testEnvironment": "node",
