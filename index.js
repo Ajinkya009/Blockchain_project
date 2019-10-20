@@ -47,12 +47,13 @@ app.use(helmet());
 
 const server = require('http').createServer(app);
 
-// Start server
-server.listen(config.port, config.ip, function () {
-  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
-  //console.log(mongoose.connection.readyState);
-});
-
+if(process.env.NODE_ENV!='ci'){
+  // Start server
+  server.listen(config.port, config.ip, function () {
+    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+    //console.log(mongoose.connection.readyState);
+  });
+}
 require('./config/setup')(app);
 require('./routes/index')(app);
 

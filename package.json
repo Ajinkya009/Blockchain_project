@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest"
+    "test": "NODE_ENV=ci jest"
   },
   "jest": {
     "testEnvironment": "node",
