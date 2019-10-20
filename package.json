@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "NODE_ENV=prod node index.js",
+    "dev-server": "node index.js",
     "test": "NODE_ENV=ci jest --forceExit"
   },
   "jest": {

@@ -7,7 +7,7 @@ const session         =   require('express-session');
 const redis 		  =   require('redis');
 const redisStore 	  =   require('connect-redis')(session);
 const cors 			  =	  require('cors');
-
+const keys            =   require('./keys');
 
 module.exports = function(app){
 
@@ -19,11 +19,11 @@ module.exports = function(app){
 	app.use(bodyParser.json({limit: '50mb'}));
     app.use(cookieParser());
     if(process.env.NODE_ENV!="ci"){
-        const client = redis.createClient();
+        const client = redis.createClient(keys.redisUrl);
         app.use(session({
             secret: 'RANDOMSECRETHERE',
             // create new redis store.
-            store: new redisStore({ host: 'localhost', port: 6379, client: client, ttl:5}),
+            store: new redisStore({ host: 'redis', port: 6379, client: client, ttl:5}),
             saveUninitialized: false,
             resave: false
         }));

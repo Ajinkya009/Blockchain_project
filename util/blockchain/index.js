@@ -2,7 +2,7 @@ let Web3 = require('web3');
 var _ = require('lodash');
 const Transaction = require('../../models/Transaction');
 const _cliProgress = require('cli-progress');
- 
+
 class BlockChain{
 
     constructor(){
@@ -58,7 +58,7 @@ class BlockChain{
 
             console.log("Started fetching and uploading data.");
             console.log(`Total blocks: ${totalBlocks} and total batches: ${totalBlocks/200}`);
-            
+
             // create a new progress bar instance and use shades_classic theme
             const bar1 = new _cliProgress.SingleBar({}, _cliProgress.Presets.shades_classic);
 
@@ -79,6 +79,14 @@ class BlockChain{
         catch(err){
             console.log(err);
         }
+    }
+
+    async initiateDataFetchAndUpload(){
+        const count = await Transaction.countDocuments();
+        if(count<500){
+            this.getTransactionDataOfLatestBlocks(12000);
+        }
+        return;
     }
     
 }

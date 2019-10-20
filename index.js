@@ -12,10 +12,10 @@ if(process.env.NODE_ENV!='ci'){
 
   // CONNECTION EVENTS
   // When successfully connected
-  mongoose.connection.on('connected', function () {
+  mongoose.connection.on('connected', async() => {
     console.log('Mongoose default connection open to ' + config.mongoURI);
-    //let bc = new blockChain();
-    //bc.getTransactionDataOfLatestBlocks(600);
+    let bc = new blockChain();
+    bc.initiateDataFetchAndUpload();
   });
 
   // If the connection throws an error

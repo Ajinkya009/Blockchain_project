@@ -5,6 +5,9 @@ const userCache = require('../util/cache/user');
 
 class UserController extends userCache {
     
+    /* Function to get transactions of a user. Caching is enabled in order to provide faster results.
+    * @param {string} userHash 
+    */
     static async getTransactions(req,res){
         try{
             const userHash = req.body.userHash;
@@ -21,8 +24,16 @@ class UserController extends userCache {
                         }
                     }
                 ]);
-                userCache.setUserTransactions(userHash,transactions);
-                res.status(200).json({transactions:transactions});
+                if(transactions.length>0){
+                    // transactions found
+                    userCache.setUserTransactions(userHash,transactions);
+                    res.status(200).json({transactions:transactions});
+                }
+                else{
+                    // transactions were not present
+                    res.status(200).json({response:"No transactions found!"});
+                }
+                
             }
             else{
                 res.status(200).json({transactions:cachedTransactions});
