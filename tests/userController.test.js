@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('./setup');
+const app = require('../index.js');
 
 require('../models/Transaction');
 
