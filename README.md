@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Ajinkya009/Project_matic.svg?branch=master)](https://travis-ci.org/Ajinkya009/Project_matic)
 
-# Matic Network Project
+# Blockchain Project
 
 ## Getting Started
 
